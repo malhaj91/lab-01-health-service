@@ -18,8 +18,7 @@ public class GreetingController {
 
     @PostMapping("/greetings")
     public GreetingResponse greeting(
-            @Valid @RequestBody GreetingRequest request )
-   {
+            @Valid @RequestBody GreetingRequest request) {
         Instant timestamp = Instant.now();
         String name = request.getName();
         String message = "Hello, " + name + "!";
