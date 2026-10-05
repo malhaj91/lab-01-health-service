@@ -34,3 +34,18 @@ jobs:
 
       - name: Run Maven verification
         run: ./mvnw --batch-mode --no-transfer-progress verify
+
+  container-build:
+    name: Container image build
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v7
+
+      - name: Build container image
+        run: >
+          docker build
+          --tag health-service:${{ github.sha }}
+          ./lab-01-health-service
